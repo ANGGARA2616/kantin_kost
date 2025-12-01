@@ -11,13 +11,14 @@ class AuthRepository {
       email: email,
       password: password,
     );
-    
+
     if (response.user == null) {
       throw const AuthException('Login failed');
     }
   }
 
-  Future<void> register(String email, String password, String username, String roomNumber) async {
+  Future<void> register(
+      String email, String password, String username, String roomNumber) async {
     // Create user in Auth
     final authResponse = await _supabaseService.client.auth.signUp(
       email: email,

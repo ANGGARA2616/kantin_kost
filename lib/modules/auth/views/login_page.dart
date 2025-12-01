@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Initialize controller jika belum ada
     final AuthController authController = Get.put(AuthController());
-    
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -90,16 +90,16 @@ class LoginPage extends StatelessWidget {
                     Obx(() => SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: authController.isLoading.value
-                                ? null
-                                : _login,
+                            onPressed:
+                                authController.isLoading.value ? null : _login,
                             child: authController.isLoading.value
                                 ? const SizedBox(
                                     height: 20,
                                     width: 20,
                                     child: CircularProgressIndicator(
                                       strokeWidth: 2,
-                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
                                     ),
                                   )
                                 : const Text('Login'),

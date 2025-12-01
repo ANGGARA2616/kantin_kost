@@ -99,7 +99,8 @@ class OrderHistoryPage extends GetView<OrderController> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: _getStatusColor(order.status),
                     borderRadius: BorderRadius.circular(20),

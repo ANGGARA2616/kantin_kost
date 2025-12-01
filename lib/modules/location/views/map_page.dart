@@ -98,7 +98,8 @@ class MapPage extends GetView<LocationController> {
                 polylines: [
                   Polyline(
                     points: controller.locationHistory,
-                    color: const Color(0xFF0000FF).withOpacity(0.7), // GUNAKAN Color().withOpacity()
+                    color: const Color(0xFF0000FF)
+                        .withOpacity(0.7), // GUNAKAN Color().withOpacity()
                     strokeWidth: 4,
                   ),
                 ],
@@ -110,14 +111,15 @@ class MapPage extends GetView<LocationController> {
         final mapService = Get.find<MapService>();
         final currentLocation = mapService.currentLocation.value;
         final selectedLocation = mapService.selectedLocation.value;
-        
+
         return Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             if (selectedLocation != null && selectedLocation != currentLocation)
               FloatingActionButton(
                 onPressed: () {
-                  final distance = controller.calculateDistanceToSelected(selectedLocation);
+                  final distance =
+                      controller.calculateDistanceToSelected(selectedLocation);
                   Get.back(result: {
                     'location': selectedLocation,
                     'distance': distance,

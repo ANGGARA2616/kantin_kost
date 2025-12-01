@@ -7,7 +7,7 @@ import '../../../data/repositories/auth_repository.dart';
 class AuthController extends GetxController {
   final AuthRepository _authRepository = Get.find();
   final SupabaseService _supabaseService = Get.find();
-  
+
   final RxBool isLoading = false.obs;
   final RxBool isLoggedIn = false.obs;
   final RxString errorMessage = ''.obs;
@@ -26,10 +26,10 @@ class AuthController extends GetxController {
     try {
       isLoading.value = true;
       errorMessage.value = '';
-      
+
       await _authRepository.login(email, password);
       isLoggedIn.value = true;
-      
+
       Get.offAllNamed('/home');
       Get.snackbar('Success', 'Login berhasil!');
     } on AuthException catch (e) {
@@ -43,13 +43,14 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> register(String email, String password, String username, String roomNumber) async {
+  Future<void> register(
+      String email, String password, String username, String roomNumber) async {
     try {
       isLoading.value = true;
       errorMessage.value = '';
-      
+
       await _authRepository.register(email, password, username, roomNumber);
-      
+
       Get.offAllNamed('/login');
       Get.snackbar('Success', 'Registrasi berhasil! Silakan login.');
     } on AuthException catch (e) {

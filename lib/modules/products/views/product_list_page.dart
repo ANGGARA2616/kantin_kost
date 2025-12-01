@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../controllers/product_controller.dart';
 import 'product_detail_page.dart';
 import '../../../data/models/product_model.dart';
+import '../../../core/constants/app_constants.dart';
 
 class ProductListPage extends GetView<ProductController> {
   const ProductListPage({super.key});
@@ -96,19 +97,22 @@ class ProductListPage extends GetView<ProductController> {
             children: [
               // Product Image
               Container(
-                height: 90,
+                height: 100,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.grey[200],
-                  image: product.imageUrl != null
+                  image: product.imagePath != null
                       ? DecorationImage(
-                          image: NetworkImage(product.imageUrl!),
+                          image: NetworkImage(
+                            AppConstants.getProductImageUrl(
+                                product.imagePath), // PAKAI HELPER
+                          ),
                           fit: BoxFit.cover,
                         )
                       : null,
                 ),
-                child: product.imageUrl == null
+                child: product.imagePath == null
                     ? const Icon(Icons.fastfood, size: 40, color: Colors.grey)
                     : null,
               ),
@@ -199,7 +203,7 @@ class ProductSearchDelegate extends SearchDelegate {
         controller.searchProducts(query);
       }
     });
-    
+
     return _buildSearchResults();
   }
 
@@ -216,7 +220,7 @@ class ProductSearchDelegate extends SearchDelegate {
     if (query.isEmpty) {
       return _buildRecentSearches();
     }
-    
+
     return _buildSearchResults();
   }
 

@@ -18,14 +18,15 @@ class LocationService extends GetxService {
   Future<bool> checkLocationPermission() async {
     try {
       LocationPermission permission = await Geolocator.checkPermission();
-      
+
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
       }
 
-      hasLocationPermission.value = permission == LocationPermission.whileInUse || 
-                                   permission == LocationPermission.always;
-      
+      hasLocationPermission.value =
+          permission == LocationPermission.whileInUse ||
+              permission == LocationPermission.always;
+
       return hasLocationPermission.value;
     } catch (e) {
       // Gunakan Get.log untuk production
@@ -54,7 +55,7 @@ class LocationService extends GetxService {
 
       currentPosition.value = position;
       await getAddressFromLatLng(position.latitude, position.longitude);
-      
+
       return position;
     } catch (e) {
       Get.log('Error getting location: $e');
@@ -67,11 +68,13 @@ class LocationService extends GetxService {
 
   Future<void> getAddressFromLatLng(double latitude, double longitude) async {
     try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
-      
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(latitude, longitude);
+
       if (placemarks.isNotEmpty) {
         Placemark place = placemarks.first;
-        currentAddress.value = '${place.street ?? ''}, ${place.subLocality ?? ''}, ${place.locality ?? ''}';
+        currentAddress.value =
+            '${place.street ?? ''}, ${place.subLocality ?? ''}, ${place.locality ?? ''}';
       } else {
         currentAddress.value = 'Alamat tidak ditemukan';
       }
@@ -86,7 +89,7 @@ class LocationService extends GetxService {
       accuracy: LocationAccuracy.best,
       distanceFilter: 10, // Update setiap 10 meter
     );
-    
+
     return Geolocator.getPositionStream(locationSettings: locationSettings);
   }
 

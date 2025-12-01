@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../controllers/product_controller.dart';
 import '../../cart/controllers/cart_controller.dart';
 import '../../../data/models/product_model.dart';
+import '../../../core/constants/app_constants.dart';
 
 class ProductDetailPage extends GetView<ProductController> {
   final CartController cartController = Get.find<CartController>();
@@ -22,9 +23,9 @@ class ProductDetailPage extends GetView<ProductController> {
             expandedHeight: 300,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: product.imageUrl != null
+              background: product.imagePath != null
                   ? Image.network(
-                      product.imageUrl!,
+                      AppConstants.getProductImageUrl(product.imagePath),
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return _buildPlaceholderImage();
@@ -55,7 +56,10 @@ class ProductDetailPage extends GetView<ProductController> {
                       Expanded(
                         child: Text(
                           product.name,
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
                         ),
@@ -93,7 +97,7 @@ class ProductDetailPage extends GetView<ProductController> {
                   Row(
                     children: [
                       Icon(
-                        product.isAvailable ? Icons.check_circle: Icons.cancel,
+                        product.isAvailable ? Icons.check_circle : Icons.cancel,
                         size: 20,
                         color: product.isAvailable ? Colors.green : Colors.red,
                       ),
@@ -101,13 +105,15 @@ class ProductDetailPage extends GetView<ProductController> {
                       Text(
                         product.isAvailable ? 'Tersedia' : 'Habis',
                         style: TextStyle(
-                          color: product.isAvailable ? Colors.green : Colors.red,
+                          color:
+                              product.isAvailable ? Colors.green : Colors.red,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       if (product.isAvailable) ...[
                         const SizedBox(width: 16),
-                        const Icon(Icons.inventory_2  , size: 16, color: Colors.grey),
+                        const Icon(Icons.inventory_2,
+                            size: 16, color: Colors.grey),
                         const SizedBox(width: 4),
                         Text(
                           'Stok: ${product.stock}',
@@ -118,7 +124,8 @@ class ProductDetailPage extends GetView<ProductController> {
                   ),
                   const SizedBox(height: 24),
                   // Deskripsi produk
-                  if (product.description != null && product.description!.isNotEmpty) ...[
+                  if (product.description != null &&
+                      product.description!.isNotEmpty) ...[
                     Text(
                       'Deskripsi',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -289,7 +296,9 @@ class ProductDetailPage extends GetView<ProductController> {
                       const SizedBox(width: 8),
                     ],
                     Text(
-                      isInCart ? 'Lihat Keranjang ($quantityInCart)' : 'Tambah ke Keranjang',
+                      isInCart
+                          ? 'Lihat Keranjang ($quantityInCart)'
+                          : 'Tambah ke Keranjang',
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

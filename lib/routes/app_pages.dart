@@ -64,6 +64,5 @@ class AppPages {
       page: () => MapPage(),
       binding: LocationBinding(), // Kita perlu buat ini
     ),
-    
   ];
 }

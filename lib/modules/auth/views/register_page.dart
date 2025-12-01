@@ -144,16 +144,16 @@ class RegisterPage extends GetView<AuthController> {
                     Obx(() => SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: controller.isLoading.value
-                                ? null
-                                : _register,
+                            onPressed:
+                                controller.isLoading.value ? null : _register,
                             child: controller.isLoading.value
                                 ? const SizedBox(
                                     height: 20,
                                     width: 20,
                                     child: CircularProgressIndicator(
                                       strokeWidth: 2,
-                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
                                     ),
                                   )
                                 : const Text('Daftar'),

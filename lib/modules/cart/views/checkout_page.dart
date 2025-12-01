@@ -37,7 +37,6 @@ class CheckoutPage extends GetView<CartController> {
               children: [
                 _buildOrderSummary(),
                 const SizedBox(height: 24),
-                
                 TextFormField(
                   controller: _roomNumberController,
                   decoration: const InputDecoration(
@@ -53,9 +52,7 @@ class CheckoutPage extends GetView<CartController> {
                   },
                   onChanged: (value) => controller.roomNumber.value = value,
                 ),
-                
                 const SizedBox(height: 16),
-                
                 const Text(
                   'Lokasi Pengantaran',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -67,17 +64,13 @@ class CheckoutPage extends GetView<CartController> {
                     if (result != null) {
                       //final LatLng location = result['location'];
                       final double? distance = result['distance'];
-                      
-                      Get.snackbar(
-                        'Lokasi Dipilih', 
-                        'Jarak: ${distance?.toStringAsFixed(2) ?? '0'} km'
-                      );
+
+                      Get.snackbar('Lokasi Dipilih',
+                          'Jarak: ${distance?.toStringAsFixed(2) ?? '0'} km');
                     }
                   },
                 ),
-                
                 const SizedBox(height: 16),
-                
                 TextFormField(
                   controller: _notesController,
                   decoration: const InputDecoration(
@@ -89,10 +82,8 @@ class CheckoutPage extends GetView<CartController> {
                   onChanged: (value) => controller.notes.value = value,
                 ),
                 const SizedBox(height: 24),
-                
                 _buildPaymentMethod(),
                 const SizedBox(height: 32),
-                
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -129,7 +120,8 @@ class CheckoutPage extends GetView<CartController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('${item.product.name} (${item.quantity}x)'),
-                      Text('Rp ${(item.product.price * item.quantity).toStringAsFixed(0)}'),
+                      Text(
+                          'Rp ${(item.product.price * item.quantity).toStringAsFixed(0)}'),
                     ],
                   ),
                 )),
@@ -137,10 +129,15 @@ class CheckoutPage extends GetView<CartController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Total', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                const Text('Total',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 Text(
                   'Rp ${controller.totalPrice.toStringAsFixed(0)}',
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
+                  style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green),
                 ),
               ],
             ),

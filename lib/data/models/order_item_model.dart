@@ -22,7 +22,7 @@ class OrderItemModel {
       id: json['id'] as String,
       orderId: json['order_id'] as String,
       productId: json['product_id'] as String,
-      productName: json['products'] != null 
+      productName: json['products'] != null
           ? (json['products']['name'] as String?) ?? 'Unknown Product'
           : 'Unknown Product',
       quantity: json['quantity'] as int,

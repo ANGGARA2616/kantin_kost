@@ -16,9 +16,8 @@ class CartController extends GetxController {
   final RxString paymentMethod = 'Cash'.obs;
 
   double get totalPrice {
-    return cartItems.fold(0, (total, item) => 
-      total + (item.product.price * item.quantity)
-    );
+    return cartItems.fold(
+        0, (total, item) => total + (item.product.price * item.quantity));
   }
 
   int get totalItems {
@@ -26,16 +25,15 @@ class CartController extends GetxController {
   }
 
   void addToCart(ProductModel product) {
-    final existingItemIndex = cartItems.indexWhere(
-      (item) => item.product.id == product.id
-    );
+    final existingItemIndex =
+        cartItems.indexWhere((item) => item.product.id == product.id);
 
     if (existingItemIndex != -1) {
       cartItems[existingItemIndex].quantity++;
     } else {
       cartItems.add(CartItem(product: product, quantity: 1));
     }
-    
+
     cartItems.refresh();
     Get.snackbar('Success', '${product.name} added to cart');
   }
@@ -51,9 +49,8 @@ class CartController extends GetxController {
       return;
     }
 
-    final existingItemIndex = cartItems.indexWhere(
-      (item) => item.product.id == product.id
-    );
+    final existingItemIndex =
+        cartItems.indexWhere((item) => item.product.id == product.id);
 
     if (existingItemIndex != -1) {
       cartItems[existingItemIndex].quantity = quantity;
@@ -70,9 +67,8 @@ class CartController extends GetxController {
   }
 
   int getQuantity(ProductModel product) {
-    final item = cartItems.firstWhereOrNull(
-      (item) => item.product.id == product.id
-    );
+    final item =
+        cartItems.firstWhereOrNull((item) => item.product.id == product.id);
     return item?.quantity ?? 0;
   }
 

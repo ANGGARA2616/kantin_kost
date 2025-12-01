@@ -11,17 +11,17 @@ class LocationStatusWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LocationService locationService = Get.find<LocationService>();
-    
+
     return Obx(() {
       return Card(
         child: ListTile(
           leading: Icon(
-            locationService.currentPosition.value != null 
-              ? Icons.location_on 
-              : Icons.location_off,
-            color: locationService.currentPosition.value != null 
-              ? Colors.green 
-              : Colors.orange,
+            locationService.currentPosition.value != null
+                ? Icons.location_on
+                : Icons.location_off,
+            color: locationService.currentPosition.value != null
+                ? Colors.green
+                : Colors.orange,
           ),
           title: Text(
             locationService.currentAddress.value,

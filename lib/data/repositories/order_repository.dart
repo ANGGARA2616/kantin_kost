@@ -15,9 +15,8 @@ class OrderRepository {
     required String paymentMethod,
   }) async {
     try {
-      final totalPrice = cartItems.fold(0.0, (total, item) => 
-        total + (item.product.price * item.quantity)
-      );
+      final totalPrice = cartItems.fold(
+          0.0, (total, item) => total + (item.product.price * item.quantity));
 
       // Insert order
       final orderResponse = await _supabaseService.client
@@ -36,16 +35,13 @@ class OrderRepository {
 
       // Insert order items
       for (final item in cartItems) {
-        await _supabaseService.client
-            .from('order_items')
-            .insert({
-              'order_id': orderId,
-              'product_id': item.product.id,
-              'quantity': item.quantity,
-              'price_at_time': item.product.price,
-            });
+        await _supabaseService.client.from('order_items').insert({
+          'order_id': orderId,
+          'product_id': item.product.id,
+          'quantity': item.quantity,
+          'price_at_time': item.product.price,
+        });
       }
-
     } on PostgrestException catch (e) {
       throw Exception('Error creating order: ${e.message}');
     } catch (e) {
@@ -83,8 +79,7 @@ class OrderRepository {
         .stream(primaryKey: ['id'])
         .eq('user_id', _supabaseService.currentUser!.id)
         .order('created_at', ascending: false)
-        .map((event) => event
-            .map((json) => OrderModel.fromJson(json))
-            .toList());
+        .map(
+            (event) => event.map((json) => OrderModel.fromJson(json)).toList());
   }
 }

@@ -16,16 +16,17 @@ class ProductRepository extends GetxService {
           .order('created_at', ascending: false);
 
       final response = await query;
-      
+
       // Filter secara manual di Flutter jika perlu
       List<ProductModel> products = (response as List)
           .map((json) => ProductModel.fromJson(json))
           .toList();
 
       if (category != null && category.isNotEmpty) {
-        products = products.where((product) => product.category == category).toList();
+        products =
+            products.where((product) => product.category == category).toList();
       }
-      
+
       return products;
     } on PostgrestException catch (e) {
       throw Exception('Error fetching products: ${e.message}');

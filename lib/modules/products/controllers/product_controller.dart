@@ -5,7 +5,7 @@ import '../../../data/repositories/product_repository.dart';
 
 class ProductController extends GetxController {
   final ProductRepository _productRepository = Get.find();
-  
+
   final RxList<ProductModel> products = <ProductModel>[].obs;
   final RxList<ProductModel> filteredProducts = <ProductModel>[].obs;
   final RxString selectedCategory = ''.obs;
@@ -37,8 +37,7 @@ class ProductController extends GetxController {
     } else {
       // Filter secara manual di Flutter
       filteredProducts.assignAll(
-        products.where((product) => product.category == category).toList()
-      );
+          products.where((product) => product.category == category).toList());
     }
   }
 
@@ -46,12 +45,14 @@ class ProductController extends GetxController {
     if (query.isEmpty) {
       filterByCategory(selectedCategory.value);
     } else {
-      filteredProducts.assignAll(
-        products.where((product) => 
-          product.name.toLowerCase().contains(query.toLowerCase()) ||
-          (product.description?.toLowerCase().contains(query.toLowerCase()) ?? false)
-        ).toList()
-      );
+      filteredProducts.assignAll(products
+          .where((product) =>
+              product.name.toLowerCase().contains(query.toLowerCase()) ||
+              (product.description
+                      ?.toLowerCase()
+                      .contains(query.toLowerCase()) ??
+                  false))
+          .toList());
     }
   }
 }

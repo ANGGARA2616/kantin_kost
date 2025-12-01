@@ -11,17 +11,17 @@ import 'core/services/map_service.dart'; // Tambahkan
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   await Supabase.initialize(
     url: AppConstants.supabaseUrl,
     anonKey: AppConstants.supabaseAnonKey,
   );
-  
+
   // Initialize services
   await Get.putAsync(() => SupabaseService().init());
   await Get.putAsync(() => LocationService().init()); // Tambahkan
   await Get.putAsync(() => MapService().init()); // Tambahkan
-  
+
   runApp(MyApp());
 }
 

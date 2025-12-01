@@ -18,7 +18,8 @@ class CartPage extends GetView<CartController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.shopping_cart, size: 64, color: Colors.grey), // Iconsax.shopping_cart
+                Icon(Icons.shopping_cart,
+                    size: 64, color: Colors.grey), // Iconsax.shopping_cart
                 SizedBox(height: 16),
                 Text(
                   'Keranjang kosong',
@@ -69,7 +70,8 @@ class CartPage extends GetView<CartController> {
                     : null,
               ),
               child: item.product.imageUrl == null
-                  ? const Icon(Icons.fork_left, color: Colors.grey) // Ganti dengan icon yang tersedia
+                  ? const Icon(Icons.fork_left,
+                      color: Colors.grey) // Ganti dengan icon yang tersedia
                   : null,
             ),
             const SizedBox(width: 12),
@@ -105,7 +107,8 @@ class CartPage extends GetView<CartController> {
                 ),
                 Text(
                   '${item.quantity}',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 IconButton(
                   icon: const Icon(Icons.add),

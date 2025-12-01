@@ -49,7 +49,8 @@ class LocationController extends GetxController {
 
   double? calculateDistanceToSelected(LatLng selectedLocation) {
     final current = mapService.currentLocation.value;
-    if (current != null) return mapService.calculateDistance(current, selectedLocation);
+    if (current != null)
+      return mapService.calculateDistance(current, selectedLocation);
     return null;
   }
 
