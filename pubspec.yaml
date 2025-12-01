@@ -1,0 +1,35 @@
+name: kantinkost
+description: Aplikasi pemesanan makanan untuk Kantin Kost 54
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.6
+  supabase_flutter: ^2.1.2
+  
+  # Location Services
+  geolocator: ^11.0.1
+  geocoding: ^2.1.1
+  permission_handler: ^11.0.1
+  
+  # Maps - UPDATE KE VERSI YANG COMPATIBLE
+  flutter_map: ^6.2.1
+  latlong2: ^0.9.1  # UPDATE KE VERSI YANG DIMINTA
+  
+  # HTTP for API calls
+  http: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
