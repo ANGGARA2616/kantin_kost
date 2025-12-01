@@ -96,7 +96,7 @@ class ProductListPage extends GetView<ProductController> {
             children: [
               // Product Image
               Container(
-                height: 100,
+                height: 90,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
@@ -114,14 +114,16 @@ class ProductListPage extends GetView<ProductController> {
               ),
               const SizedBox(height: 8),
               // Product Name
-              Text(
-                product.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
+              Flexible(
+                child: Text(
+                  product.name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 4),
               // Product Price
@@ -132,7 +134,7 @@ class ProductListPage extends GetView<ProductController> {
                   color: Theme.of(Get.context!).colorScheme.primary,
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 4),
               // Availability
               Row(
                 children: [
@@ -289,14 +291,17 @@ class ProductSearchDelegate extends SearchDelegate {
                     : null,
               ),
               const SizedBox(height: 8),
-              Text(
-                product.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14,
+              // Product Name - gunakan Flexible agar text bisa menyesuaikan
+              Flexible(
+                child: Text(
+                  product.name,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 4),
               Text(
@@ -306,7 +311,7 @@ class ProductSearchDelegate extends SearchDelegate {
                   color: Theme.of(Get.context!).colorScheme.primary,
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 4),
               Row(
                 children: [
                   Icon(
