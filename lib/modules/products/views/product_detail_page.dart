@@ -293,6 +293,7 @@ class ProductDetailPage extends GetView<ProductController> {
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                   ],

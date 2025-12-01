@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latlong2/latlong.dart';
+//import 'package:latlong2/latlong.dart';
 
 import '../controllers/cart_controller.dart';
 import '../../../data/repositories/order_repository.dart';
@@ -41,13 +41,13 @@ class CheckoutPage extends GetView<CartController> {
                 TextFormField(
                   controller: _roomNumberController,
                   decoration: const InputDecoration(
-                    labelText: 'Nomor Kamar *',
+                    labelText: 'Alamat *',
                     prefixIcon: Icon(Icons.home),
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Nomor kamar harus diisi';
+                      return 'Alamat harus di isi';
                     }
                     return null;
                   },
@@ -65,7 +65,7 @@ class CheckoutPage extends GetView<CartController> {
                   onTap: () async {
                     final result = await Get.toNamed('/map');
                     if (result != null) {
-                      final LatLng location = result['location'];
+                      //final LatLng location = result['location'];
                       final double? distance = result['distance'];
                       
                       Get.snackbar(
