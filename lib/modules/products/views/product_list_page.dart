@@ -97,7 +97,7 @@ class ProductListPage extends GetView<ProductController> {
             children: [
               // Product Image
               Container(
-                height: 100,
+                height: 90,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
@@ -123,7 +123,7 @@ class ProductListPage extends GetView<ProductController> {
                   product.name,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                    fontSize: 13,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
